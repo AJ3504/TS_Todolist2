@@ -20,7 +20,7 @@ export const toggleStatusTodo = (todoId: string) => {
 const initialState: Todo[] = TodosState;
 
 // 리듀서에서 사용하는 액션 타입 정의
-// action은 리덕스에서 생성된 액션 객체
+// action은 리덕스에서 생성된 액션 객체 -> { type: string, ... }와 같은 구조를 지님 + type은 액션의 타입을 구분하기 위한 필드이고, 나머지 필드들은 해당 액션에 필요한 데이터를 담고있음
 interface Action {
   type: string;
   [key: string]: any; // action 객체의 타입을 정의할 때 type 필드를 반드시 포함하고, 그 외에는 어떤 키와 값이 들어와도 상관없다는 의미

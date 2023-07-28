@@ -1,16 +1,21 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { RootState } from "../redux/config/configStore";
+import { Todo } from "../redux/modules/todosState";
 
 const Details = () => {
-  const { abcdef } = useParams();
-  console.log("넘겨받은 id", abcdef);
+  const { todoId } = useParams();
 
   const navigate = useNavigate();
 
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector((state: RootState) => state.todos);
 
-  const todo = todos.find((todo) => todo.id === abcdef);
+  const todo: Todo | undefined = todos.find((todo: Todo) => todo.id === todoId); //todos.find()의 결과값이 todo 혹은 undefined이기 때문에, undefined인 경우에 대한 타입 + 로직을 추가해주어야 함
+
+  if (!todo) {
+    return <div>Todo not found</div>;
+  }
+
   //
   return (
     <div>
